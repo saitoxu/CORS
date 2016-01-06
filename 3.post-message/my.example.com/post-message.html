@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Post Message Sample</title>
+  <script>
+  function loadData() {
+    frames[0].postMessage('http://other.example.com/data.json', 'http://other.example.com');
+  }
+
+  window.addEventListener('message', function(event) {
+    if (event.origin !== 'http://other.example.com') {
+      return;
+    }
+    alert(JSON.parse(event.data)["result"]);
+  }, false);
+  </script>
+</head>
+<body>
+  <input type="button" value="load data" onclick="loadData()">
+  <iframe id="child-iframe" src="http://other.example.com/other-post-message.html" style="display: none;"></iframe>
+</body>
+</html>

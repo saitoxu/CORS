@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Child Page</title>
+    <script>
+    function executeApi() {
+      var param = JSON.parse(location.hash.substring(1));
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          var iframe = document.getElementById("grandchild-iframe");
+          iframe.src = param.callback + '#' + xhr.responseText;
+        }
+      };
+      xhr.open('GET', param.api);
+      xhr.send(null);
+    };
+    </script>
+  </head>
+  <body onload="executeApi()">
+    <iframe id="grandchild-iframe" src="" style="display: none;"></iframe>
+  </body>
+</html>

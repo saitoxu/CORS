@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Xhr Level2 Sample</title>
+  <script>
+  function loadData() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://other.example.com/data.json', true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        alert(JSON.parse(xhr.responseText)["result"]);
+      }
+    };
+    xhr.send();
+  }
+  </script>
+</head>
+<body>
+  <input type="button" value="load data" onclick="loadData()">
+</body>
+</html>

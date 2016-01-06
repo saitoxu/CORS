@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Other Post Message Sample</title>
+    <script>
+    window.addEventListener('message', function(event) {
+      if (event.origin !== 'http://my.example.com') {
+        return;
+      }
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          event.source.postMessage(xhr.responseText, 'http://my.example.com');
+        }
+      };
+      var url = event.data;
+      xhr.open('GET', url);
+      xhr.send(null);
+    }, false);
+    </script>
+  </head>
+  <body></body>
+</html>

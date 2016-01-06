@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Parent Page</title>
+  <script>
+    function loadData() {
+      var childIframe = document.getElementById("child-iframe");
+      childIframe.src = "http://my.example.com/child.html#" +
+        "{" +
+          "\"api\": \"http://other.example.com/data.json\"," +
+          "\"callback\": \"http://my.example.com/grandchild.html\"" +
+        "}";
+    }
+    function callback(param) {
+      var json = JSON.parse(param.substring(1));
+      alert(json["result"]);
+    }
+  </script>
+</head>
+<body>
+  <input type="button" value="load data" onclick="loadData()">
+  <iframe id="child-iframe" src="" style="display: none;"></iframe>
+</body>
+</html>

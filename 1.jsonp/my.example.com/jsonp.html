@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JSONP Sample</title>
+  <script>
+  function loadData() {
+    var elem = document.createElement('script');
+    elem.src = 'http://other.example.com/callback.js';
+    document.getElementsByTagName('head')[0].appendChild(elem);
+  }
+  function callback(data) {
+    alert(data);
+  }
+  </script>
+</head>
+<body>
+  <input type="button" value="load data" onclick="loadData()">
+</body>
+</html>
